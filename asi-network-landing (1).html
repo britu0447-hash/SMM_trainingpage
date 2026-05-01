@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Management Training – ASI Network</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2e8c6a;
+    --primary-dark: #236b52;
+    --primary-light: #3aad84;
+    --dark: #1a1b1e;
+    --dark-2: #26272b;
+    --dark-3: #333438;
+    --bg-blue: #e5f9ff;
+    --bg-orange: #ffebe6;
+    --white: #ffffff;
+    --text-muted: #6b7280;
+    --text-body: #374151;
+    --border: #e5e7eb;
+    --font: "Red Hat Display", sans-serif;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    color: var(--text-body);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    font-size: 1.4rem; font-weight: 800; color: var(--dark);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--primary); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-body); font-weight: 500; font-size: 0.92rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta {
+    background: var(--primary); color: #fff; padding: 10px 22px;
+    border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--primary-dark); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    padding: 90px 5% 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center; min-height: 90vh;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(46,140,106,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(46,140,106,0.15); border: 1px solid rgba(46,140,106,0.3);
+    color: var(--primary-light); padding: 6px 16px; border-radius: 100px;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.6rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 800;
+    color: #fff; line-height: 1.18; letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--primary-light); font-style: normal; }
+  .hero-sub {
+    color: #9ca3af; font-size: 1.05rem; line-height: 1.7;
+    margin-bottom: 32px; max-width: 480px;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px;
+  }
+  .hero-pill {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    color: #e5e7eb; padding: 8px 16px; border-radius: 100px;
+    font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 8px;
+  }
+  .hero-pill svg { flex-shrink: 0; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--primary); color: #fff;
+    padding: 14px 28px; border-radius: var(--radius);
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: all .25s; border: 2px solid var(--primary);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: #fff;
+    padding: 14px 28px; border-radius: var(--radius);
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.25); transition: all .25s;
+  }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative; z-index: 1;
+  }
+  .hero-card {
+    background: var(--dark-2); border: 1px solid var(--dark-3);
+    border-radius: var(--radius-lg); padding: 28px;
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  }
+  .hc-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .hc-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: #fff; font-size: 1rem;
+  }
+  .hc-title { font-weight: 700; color: #fff; font-size: 0.95rem; }
+  .hc-sub { color: #6b7280; font-size: 0.8rem; }
+  .hc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .hc-metric {
+    background: var(--dark-3); border-radius: 10px; padding: 14px;
+    text-align: center;
+  }
+  .hc-metric-val { font-size: 1.4rem; font-weight: 800; color: var(--primary-light); }
+  .hc-metric-label { font-size: 0.75rem; color: #9ca3af; margin-top: 2px; }
+  .hc-bar-label { color: #9ca3af; font-size: 0.78rem; margin-bottom: 8px; }
+  .hc-bar { height: 6px; background: var(--dark-3); border-radius: 100px; margin-bottom: 10px; overflow: hidden; }
+  .hc-bar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+  .hc-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .hc-tag {
+    background: rgba(46,140,106,0.12); color: var(--primary-light);
+    padding: 5px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+  }
+  .float-badge {
+    position: absolute; background: #fff; border-radius: 12px;
+    padding: 12px 16px; box-shadow: var(--shadow-lg);
+    font-size: 0.82rem; font-weight: 600; color: var(--dark);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .float-badge.top { top: -20px; right: 20px; animation: float 4s ease-in-out infinite; }
+  .float-badge.bottom { bottom: -20px; left: 20px; animation: float 4s ease-in-out infinite .5s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .fb-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .fb-icon.green { background: #dcfce7; }
+  .fb-icon.orange { background: #ffede5; }
+
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    background: var(--bg-blue); padding: 40px 5%;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 40px; text-align: center;
+  }
+  .trust-divider { width: 1px; height: 50px; background: rgba(46,140,106,0.2); }
+  .trust-num { font-size: 1.8rem; font-weight: 800; color: var(--primary); line-height: 1; }
+  .trust-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; margin-top: 2px; }
+  .platform-logos {
+    background: var(--white); border-top: 1px solid var(--border);
+    padding: 24px 5%;
+    display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap;
+  }
+  .plat-item {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-muted); font-weight: 600; font-size: 0.9rem;
+  }
+  .plat-icon { font-size: 1.5rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 5%; }
+  .section-label {
+    display: inline-block; background: rgba(46,140,106,0.1);
+    color: var(--primary); padding: 6px 16px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800;
+    color: var(--dark); letter-spacing: -0.5px; line-height: 1.25;
+  }
+  .section-sub { color: var(--text-muted); font-size: 1rem; margin-top: 10px; max-width: 560px; line-height: 1.7; }
+  .section-header { margin-bottom: 52px; }
+  .centered { text-align: center; }
+  .centered .section-sub { margin-left: auto; margin-right: auto; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .about-text p { color: var(--text-body); font-size: 0.98rem; line-height: 1.8; margin-bottom: 16px; }
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+  .audience-card {
+    background: var(--bg-blue); border-radius: var(--radius);
+    padding: 16px; display: flex; align-items: center; gap: 12px;
+  }
+  .audience-icon { font-size: 1.4rem; }
+  .audience-label { font-weight: 600; color: var(--dark); font-size: 0.88rem; }
+  .about-visual-box {
+    background: var(--dark); border-radius: var(--radius-lg);
+    padding: 32px; color: #fff; position: relative; overflow: hidden;
+  }
+  .about-visual-box::before {
+    content: '';
+    position: absolute; bottom: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(46,140,106,0.25), transparent 70%);
+    border-radius: 50%;
+  }
+  .av-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; color: var(--primary-light); }
+  .av-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .av-list li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #d1d5db; }
+  .av-check { width: 20px; height: 20px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; color: #fff; }
+
+  /* ── HIGHLIGHTS ── */
+  .highlights { background: var(--bg-orange); }
+  .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .hl-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    padding: 28px; border: 1px solid rgba(255,120,80,0.1);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .hl-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .hl-icon { font-size: 2rem; margin-bottom: 14px; }
+  .hl-title { font-weight: 700; color: var(--dark); font-size: 1rem; margin-bottom: 6px; }
+  .hl-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ── LEARN + TOOLS ── */
+  .learn-tools { background: var(--white); }
+  .lt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .learn-list { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+  .learn-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 18px; border-radius: var(--radius);
+    border: 1px solid var(--border); transition: border-color .2s, background .2s;
+  }
+  .learn-item:hover { border-color: var(--primary); background: rgba(46,140,106,0.03); }
+  .li-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .li-title { font-weight: 700; color: var(--dark); font-size: 0.9rem; }
+  .li-desc { color: var(--text-muted); font-size: 0.82rem; margin-top: 2px; }
+  .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .tool-card {
+    background: var(--dark); border-radius: var(--radius);
+    padding: 18px; text-align: center; transition: transform .2s;
+  }
+  .tool-card:hover { transform: translateY(-3px); }
+  .tool-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .tool-name { font-weight: 700; color: #fff; font-size: 0.88rem; }
+  .tool-desc { color: #9ca3af; font-size: 0.76rem; margin-top: 3px; }
+
+  /* ── WHY ASI ── */
+  .why-asi { background: var(--dark); }
+  .why-asi .section-title { color: #fff; }
+  .why-asi .section-sub { color: #9ca3af; }
+  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .why-card {
+    background: var(--dark-2); border: 1px solid var(--dark-3);
+    border-radius: var(--radius-lg); padding: 28px;
+    transition: border-color .2s;
+  }
+  .why-card:hover { border-color: var(--primary); }
+  .why-icon { font-size: 1.8rem; margin-bottom: 14px; }
+  .why-title { font-weight: 700; color: #fff; font-size: 0.98rem; margin-bottom: 8px; }
+  .why-desc { color: #9ca3af; font-size: 0.88rem; line-height: 1.6; }
+
+  /* ── CURRICULUM ── */
+  .curriculum { background: var(--bg-blue); }
+  .accordion { display: flex; flex-direction: column; gap: 12px; max-width: 760px; margin: 0 auto; }
+  .acc-item {
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px; cursor: pointer; font-weight: 700;
+    color: var(--dark); font-size: 0.95rem;
+    transition: background .2s;
+  }
+  .acc-header:hover { background: rgba(46,140,106,0.04); }
+  .acc-num {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: rgba(46,140,106,0.1); color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; font-weight: 700; margin-right: 14px; flex-shrink: 0;
+  }
+  .acc-left { display: flex; align-items: center; }
+  .acc-arrow { transition: transform .3s; color: var(--text-muted); font-size: 1.1rem; }
+  .acc-item.open .acc-arrow { transform: rotate(180deg); }
+  .acc-body { display: none; padding: 0 22px 18px 64px; }
+  .acc-item.open .acc-body { display: block; }
+  .acc-body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .acc-body li { color: var(--text-muted); font-size: 0.88rem; padding-left: 16px; position: relative; }
+  .acc-body li::before { content: '–'; position: absolute; left: 0; color: var(--primary); }
+
+  /* ── TRAINING DETAILS ── */
+  .training-details { background: var(--white); }
+  .td-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .td-card {
+    border: 2px solid var(--border); border-radius: var(--radius-lg);
+    padding: 28px; text-align: center; transition: border-color .2s;
+  }
+  .td-card:hover { border-color: var(--primary); }
+  .td-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .td-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .td-value { font-size: 1.15rem; font-weight: 800; color: var(--dark); }
+  .td-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── CERTIFICATION ── */
+  .certification { background: var(--primary); }
+  .cert-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .cert-text .section-label { background: rgba(255,255,255,0.2); color: #fff; }
+  .cert-text .section-title { color: #fff; }
+  .cert-text p { color: rgba(255,255,255,0.85); margin-top: 16px; font-size: 0.98rem; line-height: 1.7; }
+  .cert-box {
+    background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-lg); padding: 32px; text-align: center; color: #fff;
+  }
+  .cert-box-icon { font-size: 3rem; margin-bottom: 12px; }
+  .cert-box-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+  .cert-box-sub { font-size: 0.88rem; opacity: 0.8; line-height: 1.6; }
+  .cert-features { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 20px; justify-content: center; }
+  .cert-feat { background: rgba(255,255,255,0.15); padding: 7px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--bg-blue); }
+  .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .testi-card {
+    background: var(--white); border-radius: var(--radius-lg);
+    padding: 28px; border: 1px solid var(--border);
+    transition: box-shadow .25s;
+  }
+  .testi-card:hover { box-shadow: var(--shadow-lg); }
+  .testi-stars { color: #f59e0b; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 14px; }
+  .testi-text { color: var(--text-body); font-size: 0.92rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: #fff;
+  }
+  .testi-name { font-weight: 700; color: var(--dark); font-size: 0.9rem; }
+  .testi-role { font-size: 0.78rem; color: var(--text-muted); }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--white); }
+  .pricing-box {
+    max-width: 560px; margin: 0 auto;
+    background: var(--dark); border-radius: var(--radius-lg);
+    padding: 48px; text-align: center; position: relative; overflow: hidden;
+  }
+  .pricing-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  }
+  .pricing-label { color: var(--primary-light); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .pricing-title { color: #fff; font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; }
+  .pricing-amount { display: flex; align-items: flex-start; justify-content: center; gap: 4px; margin-bottom: 8px; }
+  .pricing-currency { color: var(--primary-light); font-size: 1.6rem; font-weight: 700; margin-top: 10px; }
+  .pricing-number { color: #fff; font-size: 4rem; font-weight: 800; line-height: 1; letter-spacing: -2px; }
+  .pricing-period { color: #9ca3af; font-size: 0.9rem; margin-bottom: 28px; }
+  .pricing-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; text-align: left; }
+  .pf-item { display: flex; align-items: center; gap: 10px; color: #d1d5db; font-size: 0.9rem; }
+  .pf-check { color: var(--primary-light); font-size: 1rem; flex-shrink: 0; }
+  .pricing-btn {
+    display: block; background: var(--primary); color: #fff;
+    padding: 16px; border-radius: var(--radius); font-weight: 700; font-size: 1rem;
+    text-decoration: none; transition: background .2s;
+  }
+  .pricing-btn:hover { background: var(--primary-dark); }
+  .pricing-note { color: #6b7280; font-size: 0.8rem; margin-top: 14px; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--bg-orange); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 900px; margin: 0 auto; }
+  .faq-item {
+    background: var(--white); border-radius: var(--radius);
+    padding: 20px 22px; cursor: pointer;
+    border: 1px solid var(--border);
+  }
+  .faq-q { font-weight: 700; color: var(--dark); font-size: 0.9rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .faq-arrow { color: var(--primary); flex-shrink: 0; transition: transform .3s; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a { color: var(--text-muted); font-size: 0.86rem; line-height: 1.6; margin-top: 10px; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ── LEAD FORM ── */
+  .lead-form-section { background: var(--dark); padding: 80px 5%; }
+  .lf-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  .lf-inner .section-title { color: #fff; margin-bottom: 12px; }
+  .lf-inner p { color: #9ca3af; margin-bottom: 36px; }
+  .lead-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-input {
+    background: var(--dark-2); border: 1px solid var(--dark-3); color: #fff;
+    padding: 14px 18px; border-radius: var(--radius); font-family: var(--font);
+    font-size: 0.92rem; width: 100%; outline: none; transition: border-color .2s;
+  }
+  .form-input:focus { border-color: var(--primary); }
+  .form-input::placeholder { color: #6b7280; }
+  .form-submit {
+    background: var(--primary); color: #fff; padding: 16px;
+    border: none; border-radius: var(--radius); font-family: var(--font);
+    font-size: 1rem; font-weight: 700; cursor: pointer; transition: background .2s;
+  }
+  .form-submit:hover { background: var(--primary-dark); }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 80px 5%; text-align: center;
+  }
+  .final-cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 14px; }
+  .final-cta p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .final-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: #fff; color: var(--primary); padding: 14px 28px;
+    border-radius: var(--radius); font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-white:hover { background: var(--bg-blue); }
+  .btn-wa {
+    background: #25d366; color: #fff; padding: 14px 28px;
+    border-radius: var(--radius); font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-wa:hover { background: #20bc5a; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); border-top: 1px solid var(--dark-2);
+    padding: 32px 5%; display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-size: 1.2rem; font-weight: 800; color: #fff; }
+  .footer-logo span { color: var(--primary-light); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: #6b7280; text-decoration: none; font-size: 0.85rem; transition: color .2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { color: #6b7280; font-size: 0.82rem; }
+
+  /* ── STICKY CTA ── */
+  .sticky-cta {
+    position: fixed; bottom: 24px; right: 24px; z-index: 99;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
+  }
+  .sticky-btn {
+    padding: 12px 22px; border-radius: 100px;
+    font-weight: 700; font-size: 0.88rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: all .2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sticky-enroll { background: var(--primary); color: #fff; }
+  .sticky-enroll:hover { background: var(--primary-dark); transform: scale(1.03); }
+  .sticky-wa { background: #25d366; color: #fff; }
+  .sticky-wa:hover { background: #20bc5a; transform: scale(1.03); }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 5%; min-height: auto; gap: 40px; }
+    .hero-visual { display: none; }
+    .about-grid, .cert-inner, .lt-grid { grid-template-columns: 1fr; gap: 36px; }
+    .highlights-grid { grid-template-columns: 1fr 1fr; }
+    .td-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .form-row { grid-template-columns: 1fr; }
+    .trust-strip { flex-direction: column; gap: 0; }
+    .trust-divider { width: 50px; height: 1px; }
+  }
+  @media (max-width: 600px) {
+    .highlights-grid { grid-template-columns: 1fr; }
+    .td-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">ASI <span>Network</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#enroll" class="nav-cta">Enroll Now</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🎓 Now Enrolling – 2 Batches Available</div>
+    <h1>Become a Job-Ready<br><em>Social Media Manager</em></h1>
+    <p class="hero-sub">Master Instagram growth, Facebook & Instagram Ads, content creation, and real-world client projects. Gain skills that employers and businesses are actively looking for.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        6 Months Program
+      </div>
+      <div class="hero-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Online + Offline
+      </div>
+      <div class="hero-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Practical + Theory
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#enroll" class="btn-primary">Enroll Now →</a>
+      <a href="#demo" class="btn-outline">Book Free Demo</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div style="position:relative; padding: 30px 20px;">
+      <div class="float-badge top">
+        <div class="fb-icon green">📈</div>
+        <div>
+          <div style="font-size:0.78rem; color:#6b7280;">Avg. Reach Growth</div>
+          <div style="font-weight:800; color:#1a1b1e;">+340% in 90 days</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-header">
+          <div class="hc-avatar">SM</div>
+          <div>
+            <div class="hc-title">Social Media Dashboard</div>
+            <div class="hc-sub">ASI Network Training Platform</div>
+          </div>
+        </div>
+        <div class="hc-metrics">
+          <div class="hc-metric">
+            <div class="hc-metric-val">12.4K</div>
+            <div class="hc-metric-label">Followers</div>
+          </div>
+          <div class="hc-metric">
+            <div class="hc-metric-val">8.2%</div>
+            <div class="hc-metric-label">Engagement</div>
+          </div>
+          <div class="hc-metric">
+            <div class="hc-metric-val">₹2.4L</div>
+            <div class="hc-metric-label">Ad Revenue</div>
+          </div>
+          <div class="hc-metric">
+            <div class="hc-metric-val">94%</div>
+            <div class="hc-metric-label">Placement</div>
+          </div>
+        </div>
+        <div class="hc-bar-label">Instagram Reach</div>
+        <div class="hc-bar"><div class="hc-bar-fill" style="width:80%"></div></div>
+        <div class="hc-bar-label">Facebook Ads ROI</div>
+        <div class="hc-bar"><div class="hc-bar-fill" style="width:68%"></div></div>
+        <div class="hc-bar-label">Content Performance</div>
+        <div class="hc-bar"><div class="hc-bar-fill" style="width:90%"></div></div>
+        <div class="hc-tags">
+          <span class="hc-tag">Meta Ads ✓</span>
+          <span class="hc-tag">Analytics ✓</span>
+          <span class="hc-tag">AI Tools ✓</span>
+          <span class="hc-tag">Reels ✓</span>
+        </div>
+      </div>
+      <div class="float-badge bottom">
+        <div class="fb-icon orange">🏆</div>
+        <div>
+          <div style="font-size:0.78rem; color:#6b7280;">Certificate Awarded</div>
+          <div style="font-weight:800; color:#1a1b1e;">Social Media Manager</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <div>
+      <div class="trust-num">20+</div>
+      <div class="trust-label">Years of Industry Experience</div>
+    </div>
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <div>
+      <div class="trust-num">1000+</div>
+      <div class="trust-label">Students Trained</div>
+    </div>
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <div>
+      <div class="trust-num">100%</div>
+      <div class="trust-label">Practical, Industry-Based</div>
+    </div>
+  </div>
+  <div class="trust-divider"></div>
+  <div class="trust-item">
+    <div>
+      <div class="trust-num">2</div>
+      <div class="trust-label">Batches Available</div>
+    </div>
+  </div>
+</div>
+
+<div class="platform-logos">
+  <div class="plat-item"><span class="plat-icon">📘</span> Meta Ads Manager</div>
+  <div class="plat-item"><span class="plat-icon">📸</span> Instagram</div>
+  <div class="plat-item"><span class="plat-icon">🎨</span> Canva</div>
+  <div class="plat-item"><span class="plat-icon">🤖</span> ChatGPT / AI Tools</div>
+  <div class="plat-item"><span class="plat-icon">📊</span> Analytics</div>
+</div>
+
+<!-- ABOUT THE COURSE -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">About the Course</div>
+      <h2 class="section-title">Learn What Actually Works in Social Media</h2>
+      <p>This isn't a theoretical course. The Social Media Management Training at ASI Network is built around real campaigns, live platforms, and industry tools — designed by professionals who have been doing this for over two decades.</p>
+      <p>Every session is structured to give you hands-on experience with content creation, paid advertising, analytics, and client management so you're ready for real work the moment you complete.</p>
+      <div class="section-label" style="margin-top:28px">Designed for</div>
+      <div class="audience-grid">
+        <div class="audience-card"><span class="audience-icon">🎓</span><div class="audience-label">Students & Freshers</div></div>
+        <div class="audience-card"><span class="audience-icon">💼</span><div class="audience-label">Job Seekers</div></div>
+        <div class="audience-card"><span class="audience-icon">🏪</span><div class="audience-label">Business Owners</div></div>
+        <div class="audience-card"><span class="audience-icon">💻</span><div class="audience-label">Freelancers</div></div>
+      </div>
+    </div>
+    <div class="about-visual-box reveal reveal-delay-2">
+      <div class="av-title">What You'll Be Able to Do</div>
+      <ul class="av-list">
+        <li><div class="av-check">✓</div> Run profitable Instagram & Facebook ad campaigns</li>
+        <li><div class="av-check">✓</div> Grow organic reach and follower base strategically</li>
+        <li><div class="av-check">✓</div> Create engaging reels, graphics, and copy</li>
+        <li><div class="av-check">✓</div> Read analytics and optimize content performance</li>
+        <li><div class="av-check">✓</div> Manage social media for businesses as a career or freelancer</li>
+        <li><div class="av-check">✓</div> Use AI tools to accelerate your workflow</li>
+        <li><div class="av-check">✓</div> Build a portfolio of real client work</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE HIGHLIGHTS -->
+<section class="highlights">
+  <div class="section-header centered reveal">
+    <div class="section-label">Course Highlights</div>
+    <h2 class="section-title">Everything You Need, Nothing You Don't</h2>
+  </div>
+  <div class="highlights-grid">
+    <div class="hl-card reveal">
+      <div class="hl-icon">⏱️</div>
+      <div class="hl-title">6 Months Duration</div>
+      <div class="hl-desc">Comprehensive program structured for deep skill-building over 6 months with consistent weekly sessions.</div>
+    </div>
+    <div class="hl-card reveal reveal-delay-1">
+      <div class="hl-icon">🖥️</div>
+      <div class="hl-title">Online + Offline Classes</div>
+      <div class="hl-desc">Flexible learning with both in-person and remote options to suit your schedule and location.</div>
+    </div>
+    <div class="hl-card reveal reveal-delay-2">
+      <div class="hl-icon">📅</div>
+      <div class="hl-title">2 Batches Available</div>
+      <div class="hl-desc">Choose from two fixed weekday batches — morning or evening — to fit your routine.</div>
+    </div>
+    <div class="hl-card reveal">
+      <div class="hl-icon">🧪</div>
+      <div class="hl-title">Practical + Theory</div>
+      <div class="hl-desc">Each module combines structured theory with live platform practice, case studies, and real assignments.</div>
+    </div>
+    <div class="hl-card reveal reveal-delay-1">
+      <div class="hl-icon">🏆</div>
+      <div class="hl-title">Certification Included</div>
+      <div class="hl-desc">Receive an industry-recognized certificate on completion to use in job applications and freelance proposals.</div>
+    </div>
+    <div class="hl-card reveal reveal-delay-2">
+      <div class="hl-icon">🤖</div>
+      <div class="hl-title">AI Tools Training</div>
+      <div class="hl-desc">Learn how to use ChatGPT, AI image tools, and automation to work smarter and faster.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU WILL LEARN + TOOLS -->
+<section class="learn-tools">
+  <div class="lt-grid">
+    <div>
+      <div class="section-label reveal">What You'll Learn</div>
+      <h2 class="section-title reveal">Core Skills Covered in the Program</h2>
+      <div class="learn-list">
+        <div class="learn-item reveal">
+          <div class="li-icon">🗺️</div>
+          <div><div class="li-title">Social Media Strategy</div><div class="li-desc">Build platform-specific strategies aligned with business goals and target audiences.</div></div>
+        </div>
+        <div class="learn-item reveal">
+          <div class="li-icon">📸</div>
+          <div><div class="li-title">Instagram Growth</div><div class="li-desc">Grow accounts organically through profile optimization, hashtags, and engagement.</div></div>
+        </div>
+        <div class="learn-item reveal">
+          <div class="li-icon">💰</div>
+          <div><div class="li-title">Facebook & Instagram Ads</div><div class="li-desc">Run targeted paid campaigns with budget control, A/B testing, and retargeting.</div></div>
+        </div>
+        <div class="learn-item reveal">
+          <div class="li-icon">🎬</div>
+          <div><div class="li-title">Content Creation & Reels</div><div class="li-desc">Create scroll-stopping visuals, videos, and reels using Canva and mobile tools.</div></div>
+        </div>
+        <div class="learn-item reveal">
+          <div class="li-icon">📊</div>
+          <div><div class="li-title">Analytics & Performance Tracking</div><div class="li-desc">Read metrics, understand what drives results, and report performance to clients.</div></div>
+        </div>
+        <div class="learn-item reveal">
+          <div class="li-icon">🤝</div>
+          <div><div class="li-title">Client Handling & Freelancing</div><div class="li-desc">Manage client relationships, set rates, and build a sustainable freelance business.</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label reveal">Tools You'll Master</div>
+      <h2 class="section-title reveal">Industry-Standard Platforms</h2>
+      <div class="tools-grid" style="margin-top:24px;">
+        <div class="tool-card reveal">
+          <div class="tool-icon">📘</div>
+          <div class="tool-name">Meta Ads Manager</div>
+          <div class="tool-desc">Facebook & Instagram paid ads</div>
+        </div>
+        <div class="tool-card reveal reveal-delay-1">
+          <div class="tool-icon">📸</div>
+          <div class="tool-name">Instagram Insights</div>
+          <div class="tool-desc">Analytics & reach data</div>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon">🎨</div>
+          <div class="tool-name">Canva</div>
+          <div class="tool-desc">Graphics & content design</div>
+        </div>
+        <div class="tool-card reveal reveal-delay-1">
+          <div class="tool-icon">🤖</div>
+          <div class="tool-name">AI Tools (ChatGPT)</div>
+          <div class="tool-desc">Content & copy generation</div>
+        </div>
+        <div class="tool-card reveal" style="grid-column: span 2;">
+          <div class="tool-icon">📅</div>
+          <div class="tool-name">Scheduling Tools</div>
+          <div class="tool-desc">Buffer, Later & more for automation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ASI NETWORK -->
+<section class="why-asi">
+  <div class="section-header centered reveal">
+    <div class="section-label" style="background:rgba(46,140,106,0.2)">Why ASI Network</div>
+    <h2 class="section-title">Training You Can Trust</h2>
+    <p class="section-sub">We're not just educators — we're practitioners who work with real businesses every day.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">🏅</div>
+      <div class="why-title">20+ Years of Combined Experience</div>
+      <div class="why-desc">Our trainers aren't just teachers — they're digital marketing and e-commerce professionals with decades of real-world results.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon">🔬</div>
+      <div class="why-title">Hands-On Practical Training</div>
+      <div class="why-desc">You'll work on live platforms, real campaigns, and actual business scenarios — not just slides and theory.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🎯</div>
+      <div class="why-title">Real Business-Focused Strategies</div>
+      <div class="why-desc">Everything taught is aligned with what businesses actually need: leads, sales, brand growth, and customer retention.</div>
+    </div>
+    <div class="why-card reveal reveal-delay-1">
+      <div class="why-icon">🤲</div>
+      <div class="why-title">Ongoing Support & Guidance</div>
+      <div class="why-desc">We stay with you throughout your journey — from your first class to your first client — with mentorship and career support.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="curriculum" id="curriculum">
+  <div class="section-header centered reveal">
+    <div class="section-label">Curriculum</div>
+    <h2 class="section-title">What You'll Cover in 6 Months</h2>
+    <p class="section-sub">A structured, module-by-module roadmap designed to take you from beginner to job-ready professional.</p>
+  </div>
+  <div class="accordion reveal">
+    <div class="acc-item open">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left"><div class="acc-num">01</div>Introduction to Social Media Marketing</div>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>Overview of major social media platforms</li>
+          <li>Understanding algorithms and how content ranks</li>
+          <li>Setting up professional business profiles</li>
+          <li>Introduction to digital marketing fundamentals</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left"><div class="acc-num">02</div>Content Strategy & Planning</div>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>Building a content calendar</li>
+          <li>Brand voice, tone, and messaging</li>
+          <li>Content types: posts, stories, reels, carousels</li>
+          <li>Audience research and persona building</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left"><div class="acc-num">03</div>Instagram Growth & Organic Reach</div>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>Profile optimization and SEO for Instagram</li>
+          <li>Hashtag strategy and discovery tactics</li>
+          <li>Reel creation for maximum reach</li>
+          <li>Engagement strategies and community building</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left"><div class="acc-num">04</div>Paid Advertising – Meta Ads</div>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>Setting up Meta Business Manager & Pixel</li>
+          <li>Campaign objectives and ad types</li>
+          <li>Audience targeting and lookalike audiences</li>
+          <li>A/B testing, budgeting, and scaling ads</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left"><div class="acc-num">05</div>Analytics & Performance Reporting</div>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>Understanding Instagram Insights and Meta Analytics</li>
+          <li>Key metrics: reach, impressions, CTR, ROAS</li>
+          <li>Building performance reports for clients</li>
+          <li>Optimizing campaigns based on data</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggleAcc(this)">
+        <div class="acc-left"><div class="acc-num">06</div>Client Handling & Freelancing</div>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>Finding clients and pricing your services</li>
+          <li>Writing proposals and onboarding clients</li>
+          <li>Managing multiple client accounts efficiently</li>
+          <li>Building a portfolio and personal brand</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING DETAILS -->
+<section class="training-details">
+  <div class="section-header centered reveal">
+    <div class="section-label">Training Details</div>
+    <h2 class="section-title">Program Structure at a Glance</h2>
+  </div>
+  <div class="td-grid">
+    <div class="td-card reveal">
+      <div class="td-icon">⏱️</div>
+      <div class="td-label">Duration</div>
+      <div class="td-value">6 Months</div>
+      <div class="td-sub">Structured, module-based</div>
+    </div>
+    <div class="td-card reveal reveal-delay-1">
+      <div class="td-icon">🖥️</div>
+      <div class="td-label">Mode</div>
+      <div class="td-value">Online + Offline</div>
+      <div class="td-sub">Flexible learning options</div>
+    </div>
+    <div class="td-card reveal reveal-delay-2">
+      <div class="td-icon">📅</div>
+      <div class="td-label">Schedule</div>
+      <div class="td-value">Fixed Weekdays</div>
+      <div class="td-sub">Consistent weekly sessions</div>
+    </div>
+    <div class="td-card reveal">
+      <div class="td-icon">👥</div>
+      <div class="td-label">Batches</div>
+      <div class="td-value">2 Available</div>
+      <div class="td-sub">Morning & evening options</div>
+    </div>
+    <div class="td-card reveal reveal-delay-1">
+      <div class="td-icon">🏆</div>
+      <div class="td-label">Certification</div>
+      <div class="td-value">Yes, Included</div>
+      <div class="td-sub">On successful completion</div>
+    </div>
+    <div class="td-card reveal reveal-delay-2">
+      <div class="td-icon">🤖</div>
+      <div class="td-label">AI Training</div>
+      <div class="td-value">Yes, Included</div>
+      <div class="td-sub">ChatGPT & AI workflow tools</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATION -->
+<section class="certification">
+  <div class="cert-inner">
+    <div class="cert-text reveal">
+      <div class="section-label">Certification</div>
+      <h2 class="section-title">Walk Away with a Certificate That Means Something</h2>
+      <p>Upon completing the program, you'll receive an ASI Network certification in Social Media Management — a credential that demonstrates practical, real-world competence to employers and clients alike.</p>
+      <p style="margin-top:12px;">Our certificate is designed for practical credibility, not just participation. You earn it through project work, live campaigns, and demonstrated skills.</p>
+    </div>
+    <div class="cert-box reveal reveal-delay-2">
+      <div class="cert-box-icon">🎓</div>
+      <div class="cert-box-title">Social Media Manager Certificate</div>
+      <div class="cert-box-sub">Awarded by ASI Network upon successful completion of all modules, assignments, and practical assessments.</div>
+      <div class="cert-features">
+        <span class="cert-feat">Job-Ready</span>
+        <span class="cert-feat">Freelancing Proof</span>
+        <span class="cert-feat">Industry-Recognized</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header centered reveal">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">What Our Students Say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The course completely changed the way I approached social media. I started freelancing within 2 months of completing the program and now manage 3 client accounts regularly."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PK</div>
+        <div><div class="testi-name">Priya Kapoor</div><div class="testi-role">Freelance Social Media Manager</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I was running ads blindly before this program. After learning Meta Ads Manager properly, my client's ad costs dropped by 40%. The trainers are genuinely experienced."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RS</div>
+        <div><div class="testi-name">Rohit Sharma</div><div class="testi-role">Digital Marketing Executive</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"As a business owner, I needed to understand how social media works for my brand. ASI Network gave me both the knowledge and the confidence to take control of our online presence."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AM</div>
+        <div><div class="testi-name">Anita Mehta</div><div class="testi-role">Small Business Owner</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I joined straight after college with zero experience. The practical sessions and real projects made it easy to learn. I got placed within a month of completing the course."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">VN</div>
+        <div><div class="testi-name">Varun Nair</div><div class="testi-role">Social Media Executive, Startup</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-header centered reveal">
+    <div class="section-label">Course Pricing</div>
+    <h2 class="section-title">One Investment, Career-Changing Returns</h2>
+  </div>
+  <div class="pricing-box reveal">
+    <div class="pricing-label">Social Media Management – Full Program</div>
+    <div class="pricing-title">6 Month Complete Training</div>
+    <div class="pricing-amount">
+      <span class="pricing-currency">₹</span>
+      <span class="pricing-number">40,000</span>
+    </div>
+    <div class="pricing-period">for the complete 6-month program</div>
+    <div class="pricing-features">
+      <div class="pf-item"><span class="pf-check">✓</span> 6 months of structured training</div>
+      <div class="pf-item"><span class="pf-check">✓</span> Online + Offline classes</div>
+      <div class="pf-item"><span class="pf-check">✓</span> 2 batch options available</div>
+      <div class="pf-item"><span class="pf-check">✓</span> Practical & live campaign experience</div>
+      <div class="pf-item"><span class="pf-check">✓</span> AI tools and ChatGPT training</div>
+      <div class="pf-item"><span class="pf-check">✓</span> Certificate of completion</div>
+      <div class="pf-item"><span class="pf-check">✓</span> Career guidance & support</div>
+    </div>
+    <a href="#enroll" class="pricing-btn">Enroll Now – Secure Your Seat</a>
+    <div class="pricing-note">Seats are limited. Reach out to confirm batch availability.</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-header centered reveal">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common Questions Answered</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">Is this course beginner-friendly? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Absolutely. The course is designed for complete beginners. We start from the basics and build up to advanced skills — no prior experience required.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">What are the class timings? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">We offer 2 batch options with fixed weekday schedules — one in the morning and one in the evening. Contact us to get the current batch timings.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">Can I attend classes online? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes. We offer both online and offline class options. Students can choose the mode that suits their location and schedule.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">Will I receive a certificate? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes, all students who complete the full program and assessments receive an ASI Network certification in Social Media Management.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">Is there placement assistance? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">We provide career guidance, portfolio building support, and networking opportunities. While we don't guarantee placements, our team actively helps students find opportunities.</div>
+    </div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-q">Can I pay in installments? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Payment options and installment plans may be available. Please contact our team directly to discuss flexible payment options.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="lead-form-section" id="enroll">
+  <div class="lf-inner">
+    <div class="section-label" style="background:rgba(46,140,106,0.2); color:var(--primary-light)">Get Started</div>
+    <h2 class="section-title">Reserve Your Spot Today</h2>
+    <p>Fill in your details and our team will reach out to confirm your batch, answer any questions, and help you get started.</p>
+    <div class="lead-form">
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Your Full Name" required>
+        <input class="form-input" type="tel" placeholder="Phone Number" required>
+      </div>
+      <input class="form-input" type="email" placeholder="Email Address" required>
+      <select class="form-input" style="color:#9ca3af; cursor:pointer;">
+        <option value="" disabled selected>Preferred Batch</option>
+        <option>Morning Batch</option>
+        <option>Evening Batch</option>
+      </select>
+      <button class="form-submit" onclick="handleSubmit(event)">Submit Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="demo">
+  <h2>Start Your Career in Social Media Marketing</h2>
+  <p>Join hundreds of students who have already taken the first step toward a rewarding career with ASI Network's expert-led training.</p>
+  <div class="final-btns">
+    <a href="#enroll" class="btn-white">→ Enroll Now</a>
+    <a href="https://wa.me/91XXXXXXXXXX" class="btn-wa">💬 WhatsApp Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ASI <span>Network</span></div>
+  <div class="footer-links">
+    <a href="https://asinetwork.in/" target="_blank">Website</a>
+    <a href="#about">About</a>
+    <a href="#curriculum">Curriculum</a>
+    <a href="#faq">FAQ</a>
+    <a href="#enroll">Enroll</a>
+  </div>
+  <div class="footer-copy">© 2024 ASI Network. All rights reserved.</div>
+</footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <a href="#enroll" class="sticky-btn sticky-enroll">Enroll Now</a>
+  <a href="https://wa.me/91XXXXXXXXXX" class="sticky-btn sticky-wa">💬 WhatsApp</a>
+</div>
+
+<script>
+  // Accordion
+  function toggleAcc(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // FAQ
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+
+  // Menu
+  function toggleMenu() {
+    alert('Mobile menu – add nav links here');
+  }
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target;
+    btn.textContent = '✓ Enquiry Submitted!';
+    btn.style.background = '#236b52';
+    setTimeout(() => {
+      btn.textContent = 'Submit Enquiry →';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Sticky CTA hide on enroll section
+  const enrollSec = document.getElementById('enroll');
+  const stickyCta = document.querySelector('.sticky-cta');
+  const enrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      stickyCta.style.opacity = e.isIntersecting ? '0' : '1';
+      stickyCta.style.pointerEvents = e.isIntersecting ? 'none' : 'auto';
+    });
+  }, { threshold: 0.2 });
+  enrollObserver.observe(enrollSec);
+  stickyCta.style.transition = 'opacity 0.3s';
+</script>
+</body>
+</html>
