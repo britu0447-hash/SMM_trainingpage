@@ -131,7 +131,7 @@
     position: relative; z-index: 1;
   }
   .hero-card {
-    background: var(--dark-2); border: 1px solid var(--dark-3);
+    background: #e5f9ff; border: 1px solid var(--dark-3);
     border-radius: var(--radius-lg); padding: 28px;
     position: relative; overflow: hidden;
   }
@@ -230,7 +230,7 @@
   .audience-icon { font-size: 1.4rem; }
   .audience-label { font-weight: 600; color: var(--dark); font-size: 0.88rem; }
   .about-visual-box {
-    background: var(--dark); border-radius: var(--radius-lg);
+    background: var(--bg-blue); border-radius: var(--radius-lg);
     padding: 32px; color: #fff; position: relative; overflow: hidden;
   }
   .about-visual-box::before {
@@ -240,7 +240,7 @@
     background: radial-gradient(circle, rgba(46,140,106,0.25), transparent 70%);
     border-radius: 50%;
   }
-  .av-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; color: var(--primary-light); }
+  .av-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; color: var(--dark); }
   .av-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
   .av-list li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #d1d5db; }
   .av-check { width: 20px; height: 20px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; color: #fff; }
@@ -420,8 +420,8 @@
   /* ── LEAD FORM ── */
   .lead-form-section { background: var(--dark); padding: 80px 5%; }
   .lf-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-  .lf-inner .section-title { color: #fff; margin-bottom: 12px; }
-  .lf-inner p { color: #9ca3af; margin-bottom: 36px; }
+  .lf-inner .section-title { color: #000; margin-bottom: 12px; }
+  .lf-inner p { color: #000; margin-bottom: 36px; }
   .lead-form { display: flex; flex-direction: column; gap: 14px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .form-input {
@@ -578,7 +578,7 @@
    <div class="hero-card">
  <div class="lf-inner" style="
 ">
-    <div class="section-label" style="background:rgba(46,140,106,0.2); color:var(--primary-light)">Get Started</div>
+    <div class="section-label" style="background:rgb(52 155 118); color:#fff">Get Started</div>
     <h2 class="section-title">Reserve Your Spot Today</h2>
     <p>Fill in your details and our team will reach out to confirm your batch, answer any questions, and help you get started.</p>
     <div class="lead-form">
@@ -654,19 +654,39 @@
       <h2 class="section-title">Learn What Actually Works in Social Media</h2>
       <p>This isn't a theoretical course. The Social Media Management Training at ASI Network is built around real campaigns, live platforms, and industry tools — designed by professionals who have been doing this for over two decades.</p>
       <p>Every session is structured to give you hands-on experience with content creation, paid advertising, analytics, and client management so you're ready for real work the moment you complete.</p>
-     
+     <div class="section-label" style="margin-top:28px">Designed for</div>
+      <div class="audience-grid">
+        <div class="audience-card"><span class="audience-icon">🎓</span><div class="audience-label">Students &amp; Freshers</div></div>
+        <div class="audience-card"><span class="audience-icon">💼</span><div class="audience-label">Job Seekers</div></div>
+        <div class="audience-card"><span class="audience-icon">🏪</span><div class="audience-label">Business Owners</div></div>
+        <div class="audience-card"><span class="audience-icon">💻</span><div class="audience-label">Freelancers</div></div>
+      </div>
     </div>
     <div class="about-visual-box reveal reveal-delay-2">
       <div class="av-title">What You'll Be Able to Do</div>
-      <ul class="av-list">
-        <li><div class="av-check">✓</div> Run profitable Instagram & Facebook ad campaigns</li>
-        <li><div class="av-check">✓</div> Grow organic reach and follower base strategically</li>
-        <li><div class="av-check">✓</div> Create engaging reels, graphics, and copy</li>
-        <li><div class="av-check">✓</div> Read analytics and optimize content performance</li>
-        <li><div class="av-check">✓</div> Manage social media for businesses as a career or freelancer</li>
-        <li><div class="av-check">✓</div> Use AI tools to accelerate your workflow</li>
-        <li><div class="av-check">✓</div> Build a portfolio of real client work</li>
-      </ul>
+<div class="learn-list">
+        <div class="learn-item reveal visible">
+          <div class="li-icon">🗺️</div>
+          <div><div class="li-title">Social Media Strategy</div><div class="li-desc">Build platform-specific strategies aligned with business goals and target audiences.</div></div>
+        </div>
+        <div class="learn-item reveal visible">
+          <div class="li-icon">📸</div>
+          <div><div class="li-title">Instagram Growth</div><div class="li-desc">Grow accounts organically through profile optimization, hashtags, and engagement.</div></div>
+        </div>
+        <div class="learn-item reveal visible">
+          <div class="li-icon">💰</div>
+          <div><div class="li-title">Facebook &amp; Instagram Ads</div><div class="li-desc">Run targeted paid campaigns with budget control, A/B testing, and retargeting.</div></div>
+        </div>
+        <div class="learn-item reveal visible">
+          <div class="li-icon">🎬</div>
+          <div><div class="li-title">Content Creation &amp; Reels</div><div class="li-desc">Create scroll-stopping visuals, videos, and reels using Canva and mobile tools.</div></div>
+        </div>
+        <div class="learn-item reveal visible">
+          <div class="li-icon">📊</div>
+          <div><div class="li-title">Analytics &amp; Performance Tracking</div><div class="li-desc">Read metrics, understand what drives results, and report performance to clients.</div></div>
+        </div>
+    
+      </div>
     </div>
   </div>
 </section>
